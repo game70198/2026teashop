@@ -61,6 +61,7 @@ h1, h2 { margin-bottom: 0; }
 .qty-value { min-width: 12px; text-align: center; font-size: 13px; font-weight: 700; }
 .submit-button { width: 100%; height: 49px; margin-top: 20px; border: 0; border-radius: 12px; background: var(--teal); color: white; cursor: pointer; font-weight: 700; letter-spacing: 1px; box-shadow: 0 5px 12px rgba(76,174,176,.2); }
 .submit-button:hover, .primary-link:hover { background: #378f92; }
+.submit-button:disabled { cursor: wait; opacity: .7; }
 .submit-button span { margin-left: 8px; }
 .form-message { min-height: 20px; margin: 10px 0 0; color: #357d61; text-align: center; font-size: 13px; }
 .form-message.error, .orders-message.error { color: #b54c40; }

@@ -99,6 +99,7 @@ function showFormMessage(text, isError) {
 async function submitOrder(event) {
   event.preventDefault();
   const form = event.currentTarget;
+  if (form.dataset.submitting === "true") return;
   const name = form.elements.name.value.trim();
   const items = selectedItems();
   if (!name) {
@@ -111,26 +112,35 @@ async function submitOrder(event) {
     return;
   }
 
-  const order = { id: crypto.randomUUID(), name, items, total: totalPrice(), createdAt: new Date().toISOString() };
-  const saved = JSON.parse(localStorage.getItem("tea-orders") || "[]");
-  saved.unshift(order);
-  localStorage.setItem("tea-orders", JSON.stringify(saved));
+  form.dataset.submitting = "true";
+  form.setAttribute("aria-busy", "true");
+  form.querySelectorAll("button, input").forEach(control => { control.disabled = true; });
+  try {
+    const order = { id: crypto.randomUUID(), name, items, total: items.reduce((sum, item) => sum + item.subtotal, 0), createdAt: new Date().toISOString() };
+    const saved = JSON.parse(localStorage.getItem("tea-orders") || "[]");
+    saved.unshift(order);
+    localStorage.setItem("tea-orders", JSON.stringify(saved));
 
-  if (SHEET_SCRIPT_URL) {
-    const body = new URLSearchParams({ order: JSON.stringify(order) });
-    try {
-      await fetch(SHEET_SCRIPT_URL, { method: "POST", mode: "no-cors", body });
-    } catch (error) {
-      showFormMessage("訂單已留在本機，但傳送到 Google Sheet 失敗，請檢查 Apps Script 部署網址後重試。", true);
-      return;
+    if (SHEET_SCRIPT_URL) {
+      const body = new URLSearchParams({ order: JSON.stringify(order) });
+      try {
+        await fetch(SHEET_SCRIPT_URL, { method: "POST", mode: "no-cors", body });
+      } catch (error) {
+        showFormMessage("訂單已留在本機，但傳送到 Google Sheet 失敗，請檢查 Apps Script 部署網址後重試。", true);
+        return;
+      }
+      showFormMessage("已送出雲端同步請求，請至「查看訂單」確認是否成功同步。");
+    } else {
+      showFormMessage("訂單已保存在這台裝置。設定 Google Sheet 後即可同步全班訂單。");
     }
-    showFormMessage("已送出雲端同步請求，請至「查看訂單」確認是否成功同步。");
-  } else {
-    showFormMessage("訂單已保存在這台裝置。設定 Google Sheet 後即可同步全班訂單。");
+    quantities.clear();
+    form.reset();
+    renderProducts();
+  } finally {
+    form.dataset.submitting = "false";
+    form.removeAttribute("aria-busy");
+    form.querySelectorAll("button, input").forEach(control => { control.disabled = false; });
   }
-  quantities.clear();
-  form.reset();
-  renderProducts();
 }
 
 function initOrderPage() {
