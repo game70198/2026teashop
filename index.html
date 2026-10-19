@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4cf58">
+  <title>十二韻班級飲料團購</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body data-page="order">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="十二韻班級飲料團購首頁">
+      <span class="brand-mark">十二</span>
+      <span><strong>十二韻</strong><small>班級飲料團購</small></span>
+    </a>
+    <nav><a class="nav-link active" href="index.html">開始點餐</a><a class="nav-link" href="orders.html">查看訂單</a></nav>
+  </header>
+
+  <main class="order-page">
+    <section class="menu-row panel" aria-labelledby="menu-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">TEA MELODY · CLASS ORDER</p><h1 id="menu-heading">今天想喝點什麼？</h1></div>
+        <span class="heading-note">菜單圖片完整呈現・不裁切</span>
+      </div>
+      <img class="menu-image" src="十二韻菜單.jpg" alt="十二韻飲料完整菜單">
+    </section>
+
+    <div class="order-row">
+      <section class="form-panel panel" aria-labelledby="form-heading">
+        <div class="section-heading compact">
+          <div><p class="eyebrow">MAKE YOUR ORDER</p><h2 id="form-heading">挑選飲品</h2></div>
+          <span class="helper-pill">選好品項，數量可調整</span>
+        </div>
+        <form id="order-form">
+          <label class="name-label" for="customer-name">你的姓名 <span>必填，方便認領飲料</span></label>
+          <input id="customer-name" name="name" autocomplete="name" maxlength="60" placeholder="例如：陳小明" required>
+          <div class="category-bar" id="category-bar" aria-label="飲品分類"></div>
+          <div class="product-list" id="product-list"></div>
+          <div class="mobile-total" id="mobile-total" aria-live="polite"></div>
+          <button class="submit-button" type="submit">送出訂單 <span aria-hidden="true">→</span></button>
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <aside class="price-panel panel" aria-labelledby="price-heading">
+        <p class="eyebrow">ORDER SUMMARY</p>
+        <h2 id="price-heading">我的訂單</h2>
+        <div class="summary-empty" id="summary-empty"><span class="empty-icon">＋</span><p>選擇喜歡的飲品<br>這裡就會幫你算好價格</p></div>
+        <ul class="summary-list" id="summary-list"></ul>
+        <div class="total-line"><span>合計</span><strong id="total-price">$0</strong></div>
+        <p class="price-note">金額依菜單標示優惠價計算</p>
+        <div class="summary-sticker">好喝・好選・一起訂</div>
+      </aside>
+    </div>
+  </main>
+  <footer>十二韻班級飲料團購 <span>・</span> 請確認姓名與品項後再送出</footer>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4cf58">
+  <title>目前訂單｜十二韻班級飲料團購</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body data-page="orders">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="十二韻班級飲料團購首頁">
+      <span class="brand-mark">十二</span>
+      <span><strong>十二韻</strong><small>班級飲料團購</small></span>
+    </a>
+    <nav><a class="nav-link" href="index.html">開始點餐</a><a class="nav-link active" href="orders.html">查看訂單</a></nav>
+  </header>
+  <main class="orders-page">
+    <section class="orders-hero">
+      <div><p class="eyebrow">CLASS ORDER BOARD</p><h1>大家點了什麼？</h1><p>目前已送出的班級飲料訂單，一起核對品項與金額。</p></div>
+      <a class="primary-link" href="index.html">＋ 再點一筆</a>
+    </section>
+    <section class="orders-summary" aria-label="訂單統計">
+      <article class="stat-card"><span>訂單筆數</span><strong id="order-count">0</strong></article>
+      <article class="stat-card"><span>飲品總數</span><strong id="drink-count">0</strong></article>
+      <article class="stat-card"><span>訂單總金額</span><strong id="orders-total">$0</strong></article>
+    </section>
+    <section class="orders-board panel">
+      <div class="board-heading"><div><p class="eyebrow">LATEST ORDERS</p><h2>點餐清單</h2></div><button class="refresh-button" id="refresh-orders" type="button">重新整理</button></div>
+      <p id="orders-message" class="orders-message" role="status" aria-live="polite"></p>
+      <div class="orders-list" id="orders-list"></div>
+    </section>
+  </main>
+  <footer>十二韻班級飲料團購 <span>・</span> 訂單資料以 Google Sheet 為準</footer>
+</body>
+</html>
