@@ -1,4 +1,4 @@
-const SHEET_SCRIPT_URL = "";
+const SHEET_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyEnUNgHLGubBeI4S9Cruse5EmfHA3v-Kp7d0ce8_sxg_v76ffaGgZdZ8SHJuIceKUzXA/exec";
 
 const MENU = [
   { category: "推薦人氣", items: [
